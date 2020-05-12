@@ -9,4 +9,5 @@ data class CounterModel(val startValue: Int) {
     }
 
     fun increment() = copy(startValue = startValue + 1)
+    fun decrement() = copy(startValue = startValue - 1)
 }

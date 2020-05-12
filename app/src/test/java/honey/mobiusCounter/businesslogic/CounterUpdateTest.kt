@@ -9,11 +9,11 @@ import honey.mobiusCounter.model.CounterModel
 import org.junit.Test
 
 class CounterUpdateTest {
+    private val spec = UpdateSpec(CounterUpdate())
+    private val model = CounterModel.defaultValue()
 
     @Test
     fun `whenever increment button is clicked, then increment the value`() {
-        val spec = UpdateSpec(CounterUpdate())
-        val model = CounterModel.defaultValue()
         spec
             .given(model)
             .whenEvent(CounterEvent.Increment)
@@ -24,4 +24,19 @@ class CounterUpdateTest {
                 )
             )
     }
+
+    @Test
+    fun `whenever decrement button is clicked, then decrement the value`() {
+        spec
+            .given(model)
+            .whenEvent(CounterEvent.Decrement)
+            .then(
+                assertThatNext(
+                    hasModel(model.decrement()),
+                    hasNoEffects()
+                )
+            )
+
+    }
+
 }
