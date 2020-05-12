@@ -17,13 +17,20 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -37,9 +44,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // mobius
-    implementation 'com.spotify.mobius:mobius-core:1.4.0-beta2'
-    implementation 'com.spotify.mobius:mobius-android:1.4.0-beta2'
+    implementation 'com.spotify.mobius:mobius-core:1.4.0'
+    implementation 'com.spotify.mobius:mobius-android:1.4.0'
+    implementation 'com.spotify.mobius:mobius-rx2:1.3.4'
 
     // testing with Mobius help
-    testImplementation 'com.spotify.mobius:mobius-test:1.4.0-beta2'
+    testImplementation 'com.spotify.mobius:mobius-test:1.4.0'
 }
