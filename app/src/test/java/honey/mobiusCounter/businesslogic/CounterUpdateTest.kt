@@ -1,7 +1,6 @@
 package honey.mobiusCounter.businesslogic
 
-import com.spotify.mobius.test.NextMatchers.hasModel
-import com.spotify.mobius.test.NextMatchers.hasNoEffects
+import com.spotify.mobius.test.NextMatchers.*
 import com.spotify.mobius.test.UpdateSpec
 import com.spotify.mobius.test.UpdateSpec.assertThatNext
 import honey.mobiusCounter.CounterEvent
@@ -36,7 +35,19 @@ class CounterUpdateTest {
                     hasNoEffects()
                 )
             )
-
     }
-
+    
+    @Test
+    fun `do nothing, when the incremented value reaches ten`() {
+        // when given number is 0 and event occurred is increment, then do nothing
+        spec
+            .given(model)
+            .whenEvent(CounterEvent.Increment)
+            .then(
+                assertThatNext(
+                    hasModel(model.increment()),
+                    hasNoEffects()
+                )
+            )
+    }
 }
